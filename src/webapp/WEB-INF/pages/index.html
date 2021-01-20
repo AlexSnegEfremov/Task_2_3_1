@@ -1,17 +1,22 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://java.sun.com/xml/ns/javaee">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Loop</title>
     <style>
-        table th, table td {padding: 5px;}
-        .row  {
+        table th, table td {
+            padding: 5px;
+        }
+
+        .row {
             font-style: italic;
         }
+
         .even-row {
             color: black;
         }
+
         .odd-row {
             color: blue;
         }
@@ -27,18 +32,27 @@
         <th>USER_NAME</th>
         <th>LAST_NAME</th>
         <th>DEPARTMENT</th>
+        <th>OPERATION</th>
     </tr>
 
     <tr th:each="user, state : ${allUsers}"
         class="row" th:classappend="${state.odd} ? 'odd-row' : 'even-row'">
 
-        <td th:utext="${user.getId()}">No</td>
-        <td th:utext="${user.getName()}">car</td>
-        <td th:utext="${user.getLast_name()}">model</td>
-        <td th:utext="${user.getDepartment()}">modelVersion</td>
+        <td th:utext="${user.id}">No</td>
+        <td th:utext="${user.name}">name</td>
+        <td th:utext="${user.last_name}">last_name</td>
+        <td th:utext="${user.department}">department</td>
+        <td>
+            <form th:action="@{/{id}(id=${user.getId()})}">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
     </tr>
 
 </table>
-
+<br>
+<input type="button" value="Add"
+       onclick="window.location.href ='/addNewUser'"
+/>
 </body>
 </html>

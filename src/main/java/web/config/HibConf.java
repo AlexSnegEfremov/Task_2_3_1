@@ -16,6 +16,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import javax.sql.DataSource;
 import java.util.Objects;
 import java.util.Properties;
@@ -26,8 +27,12 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan(value = "web")
 public class HibConf {
+    private final Environment env;
+
     @Autowired
-    private Environment env;
+    public HibConf(Environment env) {
+        this.env = env;
+    }
 
     @Bean
     public DataSource getDataSource() {
