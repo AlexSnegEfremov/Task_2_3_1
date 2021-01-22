@@ -44,7 +44,7 @@
         <td th:utext="${user.last_name}">last_name</td>
         <td th:utext="${user.department}">department</td>
         <td>
-            <form th:action="@{/delete/{id}(id=${user.getId()})}">
+            <form method="post" th:action="@{/{id}(id=${user.getId()})}">
                 <input type="submit" value="удалить"/>
             </form>
         </td>
