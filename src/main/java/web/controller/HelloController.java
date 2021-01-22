@@ -32,7 +32,7 @@ public class HelloController {
         return "user_info";
     }
 
-    @GetMapping(value = "/saveUser")
+    @PostMapping(value = "/saveUser")
     public String saveUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/";
@@ -44,9 +44,7 @@ public class HelloController {
         model.addAttribute("user", user);
         return "user_edit";
     }
-    //вопрос по @GetMapping и @PostMapping так и остался открыт! Вот в таком виде как сейчас - все отрабатывает.
-    //если меняю методы изменить/добавить/удалить на Post  то в браузере выдает ошибку 405....
-    //как я понял по тексту ошибки почему то браузер ожидает именно get а не пост.
+
     @PostMapping(value = "/")
     public String Update(@ModelAttribute("user") User user) {
         userService.editUser(user);
