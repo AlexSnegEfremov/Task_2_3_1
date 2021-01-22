@@ -24,15 +24,16 @@
 </head>
 
 <body>
-<h1>User</h1>
+<h1>Таблица всех пользователей</h1>
 
 <table border="1">
     <tr>
-        <th>No</th>
-        <th>USER_NAME</th>
-        <th>LAST_NAME</th>
-        <th>DEPARTMENT</th>
-        <th>OPERATION</th>
+        <th>USER_ID</th>
+        <th>ИМЯ</th>
+        <th>ФАМИЛИЯ</th>
+        <th>ОТДЕЛ</th>
+        <th>УДАЛИТЬ</th>
+        <th>ОБНОВИТЬ</th>
     </tr>
 
     <tr th:each="user, state : ${allUsers}"
@@ -43,9 +44,14 @@
         <td th:utext="${user.last_name}">last_name</td>
         <td th:utext="${user.department}">department</td>
         <td>
-            <form th:action="@{/{id}(id=${user.getId()})}">
-                <input type="submit" value="Delete">
+            <form th:action="@{/delete/{id}(id=${user.getId()})}">
+                <input type="submit" value="удалить"/>
             </form>
+        </td>
+        <td>
+        <form th:action="@{/editUser/{id}(id=${user.getId()})}">
+            <input type="submit" value="изменить"/>
+        </form>
         </td>
     </tr>
 

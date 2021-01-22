@@ -19,35 +19,42 @@ public class HelloController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/")
+    @GetMapping(value = "/")
     public String showAllUsers(Model model) {
         List<User> allUsers = userService.getAllUsers();
         model.addAttribute("allUsers", allUsers);
         return "index";
     }
 
-    @RequestMapping(value = "/addNewUser")
+    @GetMapping(value = "/addNewUser")
     public String addNewUser(Model model) {
         model.addAttribute("user", new User());
         return "user_info";
     }
 
-    @RequestMapping(value = "/saveUser")
+    @GetMapping(value = "/saveUser")
     public String saveUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/updateInfo/{id}",method = RequestMethod.GET)
+    @GetMapping(value = "/editUser/{id}")
     public String updateUser(@PathVariable("id") int id, Model model) {
         User user = userService.getUser(id);
         model.addAttribute("user", user);
-        return "user_info";
+        return "user_edit";
     }
 
-    @RequestMapping(value = "/{id}")
+    @GetMapping(value = "/update")
+    public String Update(@ModelAttribute("user") User user) {
+        userService.editUser(user);
+        return "redirect:/";
+    }
+
+
+    @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable("id") int id) {
-        userService.deleteUser(userService.getUser(id));
+        userService.deleteUser(id);
         return "redirect:/";
     }
 

@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <h2>USER-INFO</h2>
+    <h2>ЗАПОЛНИТЕ ИНФОРМАЦИЮ О ПОЛЬЗОВАТЕЛЕ</h2>
 
     <br>
 
     <form th:action="@{/saveUser}" th:object="${user}">
         <input type="hidden" th:field="*{id}"/>
-        NAME <input type="text" th:field="*{name}"/>
+        ИМЯ <input  required type="text" th:field="*{name}"/>
         <br><br>
-        LAST_NAME <input type="text" th:field="*{last_name}"/>
+        ФАМИЛИЯ <input required type="text" th:field="*{last_name}"/>
         <br><br>
-        DEPARTMENT <input type="text" th:field="*{department}"/>
+        ОТЕДЕЛ <input required type="text" th:field="*{department}"/>
         <br><br>
-        <button type="submit" class="btn btn-success">SAVE</button>
+        <button type="submit" class="btn btn-success">Сохранить</button>
     </form>
 
 </head>

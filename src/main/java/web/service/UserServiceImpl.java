@@ -5,9 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
 import web.model.User;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
@@ -39,8 +36,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void deleteUser(User user) {
-      userDao.deleteUser(user);
+    public void deleteUser(int id) {
+      userDao.deleteUser(id);
+    }
+
+    @Override
+    @Transactional
+    public User editUser(User user) {
+        return userDao.editUser(user);
     }
 
 }

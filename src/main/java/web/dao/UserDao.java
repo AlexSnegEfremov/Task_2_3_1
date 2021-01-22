@@ -11,6 +11,8 @@ public interface UserDao {
 
     public User getUser(int id);
 
-    public void deleteUser(User user);
+    public User editUser(User user);
+
+    public void deleteUser(int id);
 }
 
